@@ -14,16 +14,17 @@ class MyThemeData {
           shadowColor: Colors.transparent,
           iconTheme: IconThemeData(color: blackColor)),
       textTheme: TextTheme(
-          headline1: TextStyle(
-            fontSize: 30,
-            color: blackColor,
-            fontWeight: FontWeight.w700,
-          ),
-          subtitle1: TextStyle(
-            fontSize: 25,
-            color: blackColor,
-            fontWeight: FontWeight.w400,
-          )),
+        headline1: TextStyle(
+          fontSize: 30,
+          color: blackColor,
+          fontWeight: FontWeight.w700,
+        ),
+        subtitle1: TextStyle(
+          fontSize: 25,
+          color: blackColor,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         selectedItemColor: blackColor,
         unselectedItemColor: Colors.white,

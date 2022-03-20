@@ -15,9 +15,10 @@ class _SuraDetailsState extends State<SuraDetails> {
   void loadFile(int index) async {
     String content =
         await rootBundle.loadString('assets/files/${index + 1}.txt');
-    List<String> lines = content.split('/n');
+    List<String> lines = content.split('\n');
     setState(() {
       verses = lines;
+      print(verses.length);
     });
   }
 
@@ -46,10 +47,10 @@ class _SuraDetailsState extends State<SuraDetails> {
             : ListView.separated(
                 separatorBuilder: (BuildContext, index) {
                   return Container(
-                      margin: EdgeInsets.symmetric(horizontal: 50),
-                      height: 1,
-                      color: Colors.red //Theme.of(BuildContext).primaryColor,
-                      );
+                    margin: EdgeInsets.symmetric(horizontal: 50),
+                    height: 1,
+                    color: Theme.of(BuildContext).primaryColor,
+                  );
                 },
                 itemBuilder: (_, index) {
                   return ItemVerse(verses[index]);
