@@ -17,7 +17,10 @@ class ItemHadethName extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 12),
         child: Text(
           title.title,
-          style: Theme.of(context).textTheme.subtitle1,
+          style: Theme.of(context)
+              .textTheme
+              .subtitle1
+              ?.copyWith(color: Theme.of(context).colorScheme.onSecondary),
           textAlign: TextAlign.center,
         ),
       ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami_app/home/sura_details/item_verse.dart';
+import 'package:islami_app/providers/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class SuraDetails extends StatefulWidget {
   static const routeName = 'sura-details';
@@ -24,39 +26,48 @@ class _SuraDetailsState extends State<SuraDetails> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<ThemeProvider>(context);
     var args = ModalRoute.of(context)?.settings.arguments as SuraDetailsArgs;
     if (verses.isEmpty) loadFile(args.index);
 
     return Stack(children: [
       Image.asset(
-        'assets/images/background.png',
+        provider.getBackground(),
         width: double.infinity,
         height: double.infinity,
         fit: BoxFit.fill,
       ),
       Scaffold(
         appBar: AppBar(
-          title: Center(
-              child: Text(
-            args.name,
-            style: Theme.of(context).textTheme.headline1,
-          )),
-        ),
+            title: Center(
+                child: Text(
+              args.name,
+              style: Theme.of(context).textTheme.headline1,
+            )),
+            leading: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Icon(
+                Icons.arrow_back,
+                color: Theme.of(context).colorScheme.onSecondary,
+              ),
+            )),
         body: verses.length == 0
             ? Center(child: CircularProgressIndicator())
             : ListView.separated(
-                separatorBuilder: (BuildContext, index) {
-                  return Container(
-                    margin: EdgeInsets.symmetric(horizontal: 50),
+          separatorBuilder: (BuildContext, index) {
+            return Container(
+              margin: EdgeInsets.symmetric(horizontal: 50),
                     height: 1,
-                    color: Theme.of(BuildContext).primaryColor,
+                    color: Theme.of(BuildContext).colorScheme.secondary,
                   );
-                },
-                itemBuilder: (_, index) {
-                  return ItemVerse(verses[index]);
-                },
-                itemCount: verses.length,
-              ),
+          },
+          itemBuilder: (_, index) {
+            return ItemVerse(verses[index]);
+          },
+          itemCount: verses.length,
+        ),
       )
     ]);
   }

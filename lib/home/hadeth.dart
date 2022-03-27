@@ -44,7 +44,7 @@ class Hadeth extends StatelessWidget {
                 return Container(
                   margin: EdgeInsets.symmetric(horizontal: 50),
                   height: 1,
-                  color: Theme.of(BuildContext).primaryColor,
+                  color: Theme.of(BuildContext).colorScheme.secondary,
                 );
               },
               itemBuilder: (_, index) {

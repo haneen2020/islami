@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:islami_app/providers/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class Tasbeh extends StatefulWidget {
   @override
@@ -32,6 +34,7 @@ class _TasbehState extends State<Tasbeh> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<ThemeProvider>(context);
     return Container(
       width: double.infinity,
       child: Column(
@@ -40,7 +43,7 @@ class _TasbehState extends State<Tasbeh> {
           Stack(
             alignment: Alignment.topCenter,
             children: [
-              Image.asset('assets/images/head_of_seb7a.png'),
+              Image.asset(provider.getHead()),
               InkWell(
                 onTap: () {
                   tasbehFunc();
@@ -50,22 +53,28 @@ class _TasbehState extends State<Tasbeh> {
                         top: MediaQuery.of(context).size.height * 0.11),
                     child: Transform.rotate(
                         angle: turns,
-                        child: Image.asset('assets/images/body_of_seb7a.png'))),
+                        child: Image.asset(provider.getSeb7aBody()))),
               ),
             ],
           ),
           Text(
             'عدد التسبيحات',
-            style: Theme.of(context).textTheme.subtitle1,
+            style: Theme.of(context)
+                .textTheme
+                .subtitle1
+                ?.copyWith(color: Theme.of(context).colorScheme.onSecondary),
           ),
           Container(
             padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
-                color: Color(0x92b7935f),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.8),
                 borderRadius: BorderRadius.circular(20)),
             child: Text(
               '$counter',
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context)
+                  .textTheme
+                  .subtitle1
+                  ?.copyWith(color: Theme.of(context).colorScheme.onSecondary),
             ),
           ),
           SizedBox(
@@ -74,7 +83,7 @@ class _TasbehState extends State<Tasbeh> {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 15),
             decoration: BoxDecoration(
-                color: Color(0xffb7935f),
+                color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.circular(20)),
             child: Text(
               '${tasbeh[index]}',

@@ -11,7 +11,10 @@ class ItemVerse extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 12),
       child: Text(
         text,
-        style: Theme.of(context).textTheme.subtitle1,
+        style: Theme.of(context)
+            .textTheme
+            .subtitle1
+            ?.copyWith(color: Theme.of(context).colorScheme.onSecondary),
         textAlign: TextAlign.center,
       ),
     );
